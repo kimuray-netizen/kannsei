@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スルリム | あなたのダイエットを代行します</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('https://images.unsplash.com/photo-1542385151-efd9000785a0?q=80&w=2038&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center right;
+        }
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-position: 70% center;
+            }
+        }
+        .text-border-green {
+            position: relative;
+            display: inline-block;
+        }
+        .text-border-green::after {
+            content: "";
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background-color: rgba(0, 150, 108, 0.2);
+            z-index: -1;
+        }
+        .brand-accent { color: #00966C; }
+        .bg-brand-accent { background-color: #00966C; }
+        
+        .hero-title {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+        
+        .comparison-container {
+            width: 100%;
+            overflow-x: hidden;
+            padding: 0 8px;
+        }
+        .comparison-table {
+            border-collapse: separate;
+            border-spacing: 0;
+            table-layout: fixed;
+            width: 100%;
+        }
+        .sururim-column {
+            background: #ffffff;
+            border-left: 2px solid #00966C !important;
+            border-right: 2px solid #00966C !important;
+            box-shadow: 0 12px 30px -5px rgba(0, 150, 108, 0.4);
+            position: relative;
+            z-index: 20;
+            width: 30%;
+        }
+        @media (min-width: 768px) {
+            .sururim-column {
+                border-left-width: 5px !important;
+                border-right-width: 5px !important;
+                width: 25%;
+            }
+        }
+        .sururim-header {
+            border-top: 5px solid #00966C !important;
+            border-top-left-radius: 1.5rem;
+            border-top-right-radius: 1.5rem;
+            background: linear-gradient(to bottom, #00966C, #008560);
+            padding: 1rem 0.5rem !important;
+        }
+        .sururim-footer {
+            border-bottom: 5px solid #00966C !important;
+            border-bottom-left-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+            padding-bottom: 1.5rem !important;
+        }
+        .row-label {
+            width: 85px;
+            background-color: #f8fafc;
+            color: #334155;
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 15px 4px;
+        }
+        @media (min-width: 768px) {
+            .row-label { width: 160px; font-size: 1.1rem; padding: 2.5rem 1.5rem; }
+        }
+        .other-cell {
+            background-color: #ffffff;
+            border-bottom: 1px solid #f1f5f9;
+            color: #4b5563;
+            font-size: 0.75rem;
+            padding: 15px 4px;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .other-cell { font-size: 1.1rem; padding: 2.5rem 1.5rem; }
+        }
+
+        .feature-badge {
+            display: inline-flex;
+            align-items: center;
+            background: white;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 900;
+            color: #00966C;
+            border: 2px solid #00966C;
+            font-size: 0.65rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            white-space: nowrap;
+        }
+        @media (min-width: 768px) {
+            .feature-badge {
+                font-size: 1rem;
+                padding: 6px 20px;
+            }
+        }
+
+        .stats-circle {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #00966C;
+            border-radius: 50%;
+            width: 70px;
+            box-shadow: 0 8px 20px rgba(0, 150, 108, 0.15);
+        }
+        @media (min-width: 768px) {
+            .stats-circle {
+                width: 110px;
+            }
+        }
+
+        .speech-bubble {
+            position: relative;
+            background: #ffffff;
+            border: 2px solid #00966C;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+        }
+        .speech-bubble::before {
+            content: "";
+            position: absolute;
+            left: -12px; top: 20px;
+            border-style: solid;
+            border-width: 8px 12px 8px 0;
+            border-color: transparent #00966C transparent transparent;
+        }
+        .speech-bubble::after {
+            content: "";
+            position: absolute;
+            left: -8px; top: 20px;
+            border-style: solid;
+            border-width: 8px 12px 8px 0;
+            border-color: transparent #ffffff transparent transparent;
+        }
+        @media (max-width: 768px) {
+            .speech-bubble::before, .speech-bubble::after {
+                left: 20px;
+                top: -12px;
+                border-width: 0 8px 12px 8px;
+                border-color: transparent transparent #00966C transparent;
+            }
+            .speech-bubble::after {
+                top: -8px;
+                border-color: transparent transparent #ffffff transparent;
+            }
+        }
+
+        .impact-price-box {
+            background: linear-gradient(135deg, #fff 0%, #f0fdf4 100%);
+            border: 3px solid #00966C;
+            position: relative;
+            margin-top: 4.5rem;
+        }
+        .impact-number {
+            font-size: clamp(4rem, 15vw, 10rem);
+            color: #e11d48;
+            font-family: 'Arial Black', sans-serif;
+            letter-spacing: -0.05em;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+        }
+
+        .fat-cell {
+            width: 32px;
+            height: 32px;
+            background: radial-gradient(circle at 30% 30%, #ffeb3b, #fbc02d);
+            border-radius: 50%;
+            margin: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .fat-cell.small { transform: scale(0.4); }
+        .fat-cell.destroyed { opacity: 0.1; transform: scale(0.1); }
+        .arrow-indicator {
+            width: 0; height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 15px solid #00966C;
+            margin: 0 10px;
+        }
+
+        .amazing-feature-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .voice-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.25rem;
+            border: 2px solid #00966C;
+            box-shadow: 0 10px 15px -3px rgba(0, 150, 108, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-banner {
+            background: linear-gradient(135deg, #00966C 0%, #007353 100%);
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 40px -10px rgba(0, 150, 108, 0.3);
+        }
+        .gold-glow {
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .review-quote-mark {
+            font-family: 'Arial', sans-serif;
+            color: #00966C;
+            opacity: 0.08;
+            position: absolute;
+            font-size: 5rem;
+            line-height: 1;
+        }
+
+        .body-map-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        .map-view {
+            position: relative;
+            width: 48%;
+            max-width: 320px;
+        }
+        .silhouette {
+            width: 100%;
+            height: auto;
+            fill: none;
+            stroke: #333;
+            stroke-width: 1;
+        }
+        .highlight-area {
+            fill: #FFD93D;
+            fill-opacity: 0.5;
+        }
+        .part-label {
+            background: #FFD93D;
+            color: #111;
+            font-weight: 900;
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 6px;
+            position: absolute;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 30;
+        }
+        @media (min-width: 768px) {
+            .part-label { font-size: 0.9rem; padding: 4px 12px; }
+        }
+
+        .rebound-card {
+            display: flex;
+            flex-direction: column;
+            border-radius: 2rem;
+            padding: 1.5rem;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        .rebound-card-bad {
+            background: #f1f5f9;
+            border: 2px solid #e2e8f0;
+        }
+        .rebound-card-good {
+            background: #f0fdf4;
+            border: 4px solid #00966C;
+            box-shadow: 0 20px 40px -10px rgba(0, 150, 108, 0.2);
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            border-radius: 999px;
+            font-weight: 900;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .status-badge-bad { background: #94a3b8; color: white; }
+        .status-badge-good { background: #00966C; color: white; }
+        
+        .vs-circle {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: #94a3b8;
+            z-index: 40;
+        }
+        @media (max-width: 767px) {
+            .vs-circle { display: none; }
+        }
+
+        .clinic-accordion details {
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .clinic-accordion summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1.25rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 900;
+            transition: background 0.2s;
+        }
+        .clinic-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        .clinic-accordion summary:hover {
+            background-color: #f8fafc;
+        }
+        .clinic-accordion details[open] summary {
+            color: #00966C;
+        }
+        .clinic-accordion .arrow-icon {
+            transition: transform 0.3s;
+        }
+        .clinic-accordion details[open] .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 2rem;
+            padding: 2rem;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 150, 108, 0.25);
+        }
+        .ai-message {
+            background: #f0fdf4;
+            border-left: 4px solid #00966C;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .user-message {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #00966C;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md px-4 py-2 border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="bg-[#00966C] text-white px-3 py-1 rounded-full text-[10px] md:text-sm font-bold flex items-center shadow-sm">
+                    <span class="mr-1 text-sm md:text-lg tracking-widest font-black">SURURIMU</span>
+                    <span class="hidden sm:inline-block opacity-90 border-l border-white/30 pl-2 font-medium">次世代医療ダイエット</span>
+                </div>
+            </div>
+            <button onclick="openAiModal()" class="text-[10px] md:text-xs font-black bg-[#00966C] text-white px-3 py-1.5 rounded-full shadow-sm active:scale-95 transition-all">
+                LINEで症例を公開中
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[95vh] flex items-center pt-16 md:pt-20 overflow-hidden hero-bg">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 w-full relative z-10">
+            <div class="max-w-4xl">
+                <div class="flex flex-wrap gap-1.5 md:gap-4 mb-6">
+                    <span class="feature-badge">「きつい」食事制限なし</span>
+                    <span class="feature-badge">「無理な」運動なし</span>
+                    <span class="feature-badge">ダウンタイム0を追求</span>
+                    <span class="feature-badge">一部位9,800円（税込）</span>
+                </div>
+
+                <div class="mb-8">
+                    <p class="text-gray-600 font-black tracking-[0.1em] text-xs md:text-xl mb-3">努力する時代は、もう終わり。</p>
+                    <h1 class="hero-title font-black leading-tight tracking-tighter text-slate-900">
+                        <div class="text-3xl md:text-6xl text-[#00966C] mb-1">「スルリム」</div>
+                        <div class="text-2xl md:text-6xl flex items-baseline flex-wrap">
+                            <span class="text-4xl md:text-8xl mr-1 italic">100</span>時間<span class="mx-1 text-lg md:text-4xl opacity-80 font-bold">の努力を、</span>
+                            <span class="text-border-green">
+                                <span class="text-4xl md:text-8xl text-[#00966C] italic">約15</span>分で
+                            </span>
+                        </div>
+                    </h1>
+                    <div class="mt-6 inline-block bg-white/80 backdrop-blur px-5 py-3 rounded-xl border-l-4 md:border-l-8 border-[#00966C] shadow-lg">
+                        <p class="text-lg md:text-3xl font-black text-[#00966C] tracking-tighter leading-tight">
+                            「あなたは、いつも通り過ごすだけ。」
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-10 flex flex-col md:flex-row items-center gap-6 md:gap-12">
+                    <button onclick="openAiModal()" class="w-full sm:w-auto text-center inline-block bg-[#00966C] text-white text-base md:text-2xl font-black px-10 py-5 rounded-full shadow-xl active:scale-95 transition-all">
+                        LINEで症例を公開中
+                    </button>
+                    <div class="flex gap-2.5 md:gap-5">
+                        <div class="stats-circle">
+                            <p class="text-[7px] md:text-[10px] font-bold text-gray-500 leading-none mb-1">クリニック数</p>
+                            <p class="text-[9px] md:text-base font-black text-[#00966C]">全国34院</p>
+                        </div>
+                        <div class="stats-circle">
+                            <p class="text-[7px] md:text-[10px] font-bold text-gray-500 leading-none mb-1">施術時間</p>
+                            <p class="text-[9px] md:text-base font-black text-[#00966C]">約15分</p>
+                        </div>
+                        <div class="stats-circle">
+                            <p class="text-[7px] md:text-[10px] font-bold text-gray-500 leading-none mb-1">友達数</p>
+                            <p class="text-[10px] md:text-base font-black text-[#00966C]">30万人</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section (マッコイ斎藤さん) -->
+    <section class="py-12 md:py-24 bg-slate-50">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="relative rounded-2xl md:rounded-[3rem] overflow-hidden shadow-2xl bg-white">
+                <div class="relative h-[380px] md:h-[700px]">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop" alt="施術風景" class="w-full h-full object-cover">
+                    <div class="absolute top-0 right-0 bg-brand-accent text-white px-5 py-2 text-xs md:text-4xl font-black italic">マッコイ斎藤さんが体験</div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 md:p-16 bg-gradient-to-t from-black/80 to-transparent text-white">
+                        <div class="space-y-2 md:space-y-8">
+                            <div class="inline-block bg-white px-4 py-2 md:px-10 md:py-5 shadow-2xl rounded-lg">
+                                <h2 class="text-sm md:text-5xl font-black text-gray-900 tracking-tighter italic">初めてのスルリム体験！</h2>
+                            </div>
+                            <div class="bg-white/95 p-4 md:p-12 shadow-2xl inline-block border-l-4 md:border-l-[16px] border-brand-accent rounded-r-xl">
+                                <p class="text-[10px] md:text-3xl font-black mb-1 text-gray-800 leading-none">たった1回の施術で約</p>
+                                <div class="flex items-baseline">
+                                    <span class="text-4xl md:text-[11rem] font-black brand-accent leading-none tracking-tighter">-6.5</span>
+                                    <span class="text-xl md:text-8xl font-black brand-accent ml-1">kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="py-16 md:py-32 bg-white">
+        <div class="max-w-6xl mx-auto relative z-10 px-4">
+            <div class="text-center mb-16">
+                <h3 class="text-2xl md:text-6xl font-black mb-4 tracking-tighter text-slate-900 leading-tight">
+                    6.5kg（<span class="text-red-600">46,800kcal</span>）を<br>消費するために必要なこと
+                </h3>
+            </div>
+            <div class="comparison-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th class="p-0 w-[85px] md:w-[160px]"></th>
+                            <th class="p-2 text-center text-slate-400 font-black text-xs md:text-xl border-b uppercase">ジム</th>
+                            <th class="p-2 text-center text-slate-400 font-black text-xs md:text-xl border-b uppercase">ランニング</th>
+                            <th class="p-2 text-center text-slate-400 font-black text-xs md:text-xl border-b uppercase text-slate-800">脂肪吸引</th>
+                            <th class="p-2 md:p-10 text-center sururim-column sururim-header text-white">
+                                <div class="text-[8px] md:text-sm bg-yellow-400 text-black px-2 md:px-5 py-1 rounded-full mb-2 font-black uppercase inline-block">Best Choice</div>
+                                <div class="text-xs md:text-4xl font-black leading-none italic">スルリム</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-xs md:text-xl">
+                        <tr>
+                            <td class="row-label">必要な時間</td>
+                            <td class="other-cell">120時間〜</td><td class="other-cell">100時間〜</td><td class="other-cell font-bold">3時間+DT</td>
+                            <td class="text-center sururim-column border-b border-emerald-50 font-black brand-accent">
+                                <div class="text-sm md:text-4xl py-2">最短約15分</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="row-label">コスト</td>
+                            <td class="other-cell font-bold">15万円</td><td class="other-cell font-bold">2万円</td><td class="other-cell font-black italic">20万〜</td>
+                            <td class="text-center sururim-column border-b bg-emerald-50/10">
+                                <div class="text-sm md:text-4xl font-black brand-accent underline decoration-rose-500 decoration-4 underline-offset-8 py-2">9,800円<span class="text-xs">（税込）</span></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="row-label">継続性</td>
+                            <td class="other-cell text-red-500 font-bold italic">リバウンドする<br>可能性あり</td>
+                            <td class="other-cell text-red-500 font-bold italic">リバウンドする<br>可能性あり</td>
+                            <td class="other-cell font-medium">生活習慣次第</td>
+                            <td class="text-center sururim-column border-b font-black brand-accent">
+                                <div class="py-2">リバウンド<br class="md:hidden">0を追求</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctor Section -->
+    <section class="py-12 bg-slate-50 border-b border-slate-100">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
+                <div class="flex-shrink-0">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71f1e3c770?q=80&w=200&h=200&auto=format&fit=crop" alt="医師" class="w-20 h-20 md:w-32 md:h-32 rounded-full border-4 border-[#00966C] object-cover shadow-lg">
+                        <div class="absolute -bottom-1 -right-1 bg-[#00966C] text-white text-[8px] md:text-[10px] font-black px-2 py-0.5 rounded-md shadow-sm">DOCTOR</div>
+                    </div>
+                </div>
+                <div class="flex-grow space-y-4">
+                    <div class="speech-bubble">
+                        <p class="font-black text-[#00966C] text-base md:text-xl mb-1">「一回で脂肪溶解5回分、脂肪細胞を35%破壊する効果が期待できます」</p>
+                        <p class="text-slate-600 text-xs md:text-base leading-relaxed">これほど高効率な施術が、今なら手軽に始められる価格で提供されています。</p>
+                    </div>
+                    <div class="speech-bubble">
+                        <p class="font-black text-[#00966C] text-base md:text-xl mb-1">「施術時間は約15分。お忙しい方も来ていただけます」</p>
+                        <p class="text-slate-600 text-xs md:text-base leading-relaxed">コスパだけでなくタイパも追求. 無理なく来ていただけるようこだわりました。</p>
+                    </div>
+                    <div class="speech-bubble">
+                        <p class="font-black text-[#00966C] text-base md:text-xl mb-1">「メス不使用。ダウンタイム0を徹底追求しました」</p>
+                        <p class="text-slate-600 text-xs md:text-base leading-relaxed">安全性と結果の両立. それがスルリムが選ばれる理由です。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Zone (Middle) -->
+            <div id="cta" class="mt-16 md:mt-24 impact-price-box rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 text-center shadow-[0_40px_100px_-20px_rgba(225,29,72,0.2)] relative overflow-hidden">
+                <div class="max-w-4xl mx-auto relative z-10">
+                    <h2 class="text-2xl md:text-5xl font-black text-slate-900 leading-tight mb-8 tracking-tighter">
+                        「100時間の努力」を<br class="md:hidden">
+                        <span class="text-border-green">「約15分」で。</span>
+                    </h2>
+                    <div class="mb-10">
+                        <div class="flex flex-col items-center">
+                            <p class="text-lg md:text-2xl font-black text-rose-600 mb-2">＼ 圧倒的安さ ／</p>
+                            <div class="flex items-center justify-center gap-1 md:gap-4 flex-wrap leading-none">
+                                <span class="text-xl md:text-4xl font-black text-slate-800 self-center">一部位</span>
+                                <span class="impact-number">9,800</span>
+                                <div class="flex flex-col items-start gap-1">
+                                    <span class="text-3xl md:text-6xl font-black text-rose-600">円<span class="text-sm md:text-2xl">（税込）</span></span>
+                                </div>
+                            </div>
+                            <p class="mt-4 bg-yellow-400 text-black px-6 py-2 rounded-lg font-black text-sm md:text-xl animate-pulse">
+                                この価格で医療ダイエットは破格！？
+                            </p>
+                        </div>
+                    </div>
+                    <div class="inline-block relative w-full sm:w-auto">
+                        <div class="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#00966C] text-white text-[10px] md:text-xs font-black px-4 py-1 rounded-full animate-bounce shadow-lg whitespace-nowrap">
+                            劇的な変化を今すぐチェック！
+                        </div>
+                        <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center bg-rose-600 text-white text-lg md:text-3xl font-black px-6 py-5 md:px-16 md:py-10 rounded-full shadow-[0_20px_40px_-10px_rgba(225,29,72,0.4)] hover:scale-105 active:scale-95 transition-all group border-b-8 border-rose-800">
+                            <span class="flex items-center">
+                                LINEで症例を公開中
+                                <svg class="w-6 h-6 md:w-8 md:h-8 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REBOUND MECHANISM SECTION -->
+    <section class="py-16 md:py-24 bg-white border-t-8 border-[#00966C]/5">
+        <div class="max-w-5xl mx-auto px-4 relative">
+            <div class="text-center mb-16">
+                <h3 class="text-2xl md:text-5xl font-black text-slate-900 leading-tight tracking-tighter">
+                    スルリムは<span class="text-rose-600 underline decoration-8 decoration-rose-200 underline-offset-8">脂肪細胞そのものを破壊し「体外へ排出」</span><br class="hidden md:block">
+                    するから<span class="text-[#00966C] text-3xl md:text-7xl italic">リバウンドしにくい！！</span>
+                </h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 md:gap-16 items-stretch relative">
+                <div class="vs-circle">VS</div>
+                <div class="rebound-card rebound-card-bad">
+                    <div class="status-badge status-badge-bad">✕ 一般的なダイエット</div>
+                    <div class="mb-8">
+                        <h4 class="text-xl md:text-2xl font-black text-slate-700 mb-4">細胞が「小さくなるだけ」</h4>
+                        <div class="flex items-center justify-between bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="text-center">
+                                <span class="text-[10px] font-bold text-slate-400 block mb-2 uppercase">Before</span>
+                                <div class="grid grid-cols-3 gap-1 w-[80px] md:w-[100px]">
+                                    <div class="fat-cell"></div><div class="fat-cell"></div><div class="fat-cell"></div>
+                                    <div class="fat-cell"></div><div class="fat-cell"></div><div class="fat-cell"></div>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 mx-2 text-slate-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-[10px] font-bold text-slate-400 block mb-2 uppercase">After</span>
+                                <div class="grid grid-cols-3 gap-1 w-[80px] md:w-[100px]">
+                                    <div class="fat-cell small"></div><div class="fat-cell small"></div><div class="fat-cell small"></div>
+                                    <div class="fat-cell small"></div><div class="fat-cell small"></div><div class="fat-cell small"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-base font-bold text-slate-600 leading-relaxed text-center">
+                        脂肪細胞を小さくしても、<span class="text-slate-900 underline decoration-slate-300">細胞の「数」は変わりません。</span><br>
+                        食事を戻すと、またパンパンに膨らんでリバウンドする可能性があります。
+                    </p>
+                </div>
+                <div class="rebound-card rebound-card-good">
+                    <div class="status-badge status-badge-good">◎ スルリム式</div>
+                    <div class="mb-8">
+                        <h4 class="text-xl md:text-2xl font-black text-[#00966C] mb-4 italic">細胞の「数」を物理的に減らす</h4>
+                        <div class="flex items-center justify-between bg-white p-6 rounded-2xl border border-emerald-100 shadow-inner">
+                            <div class="text-center">
+                                <span class="text-[10px] font-bold text-slate-400 block mb-2 uppercase">Before</span>
+                                <div class="grid grid-cols-3 gap-1 w-[80px] md:w-[100px]">
+                                    <div class="fat-cell"></div><div class="fat-cell"></div><div class="fat-cell"></div>
+                                    <div class="fat-cell"></div><div class="fat-cell"></div><div class="fat-cell"></div>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 mx-2 text-[#00966C]">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </div>
+                            <div class="text-center relative">
+                                <span class="text-[10px] font-black text-[#00966C] block mb-2 uppercase">Destroyed</span>
+                                <div class="grid grid-cols-3 gap-1 w-[80px] md:w-[100px]">
+                                    <div class="fat-cell destroyed"></div><div class="fat-cell"></div><div class="fat-cell destroyed"></div>
+                                    <div class="fat-cell"></div><div class="fat-cell destroyed"></div><div class="fat-cell destroyed"></div>
+                                </div>
+                                <div class="absolute -right-4 -top-2 text-xl">💨</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-base font-bold text-slate-800 leading-relaxed text-center">
+                        脂肪細胞そのものを破壊し<span class="text-[#00966C] font-black italic underline underline-offset-4 decoration-yellow-400">「体外へ排出」</span>します。<br>
+                        脂肪を溜めるための「器」が物理的に無くなるため、リバウンド0を追求できるのです。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMAZING FEATURES & TRUST RECORD -->
+    <section class="py-16 md:py-24 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-5xl font-black text-slate-900 italic tracking-tighter">
+                    スルリムの<span class="text-[#00966C]">ここがすごい！</span>
+                </h3>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 mb-16">
+                <div class="amazing-feature-card">
+                    <span class="text-[#00966C] font-black text-xs md:text-sm mb-1">安全性</span>
+                    <span class="text-slate-900 font-black text-sm md:text-xl">非常に高い</span>
+                </div>
+                <div class="amazing-feature-card">
+                    <span class="text-[#00966C] font-black text-xs md:text-sm mb-1">施術時間</span>
+                    <span class="text-slate-900 font-black text-sm md:text-xl">約15分</span>
+                </div>
+                <div class="amazing-feature-card">
+                    <span class="text-[#00966C] font-black text-xs md:text-sm mb-1">術後の痛み</span>
+                    <span class="text-slate-900 font-black text-sm md:text-xl">0を追求</span>
+                </div>
+                <div class="amazing-feature-card">
+                    <span class="text-[#00966C] font-black text-xs md:text-sm mb-1">術後の腫れ</span>
+                    <span class="text-slate-900 font-black text-sm md:text-xl">0を追求</span>
+                </div>
+                <div class="amazing-feature-card">
+                    <span class="text-[#00966C] font-black text-xs md:text-sm mb-1">ダウンタイム</span>
+                    <span class="text-slate-900 font-black text-sm md:text-xl">0を追求</span>
+                </div>
+                <div class="amazing-feature-card">
+                    <span class="text-[#00966C] font-black text-xs md:text-sm mb-1">メイク・お風呂</span>
+                    <span class="text-slate-900 font-black text-sm md:text-xl">当日から</span>
+                </div>
+                <div class="amazing-feature-card">
+                    <span class="text-[#00966C] font-black text-xs md:text-sm mb-1">即効性</span>
+                    <span class="text-slate-900 font-black text-sm md:text-xl leading-tight">直後〜<br class="md:hidden">一週間程度</span>
+                </div>
+                <div class="amazing-feature-card">
+                    <span class="text-[#00966C] font-black text-xs md:text-sm mb-1">リバウンド</span>
+                    <span class="text-slate-900 font-black text-sm md:text-xl">しずらい</span>
+                </div>
+                <div class="amazing-feature-card">
+                    <span class="text-[#00966C] font-black text-xs md:text-sm mb-1">筋肉</span>
+                    <span class="text-slate-900 font-black text-sm md:text-xl leading-tight">筋肉は一切落ちない</span>
+                </div>
+                <div class="amazing-feature-card bg-rose-50 border-rose-100">
+                    <span class="text-rose-600 font-black text-xs md:text-sm mb-1">カウンセリング料</span>
+                    <span class="text-rose-600 font-black text-sm md:text-xl">無料</span>
+                </div>
+            </div>
+
+            <div class="mb-16">
+                <div class="trust-banner p-8 md:p-12 text-center text-white relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+                    <div class="relative z-10">
+                        <div class="inline-block border-2 border-yellow-400 px-4 py-1 rounded-full text-yellow-400 text-xs md:text-lg font-black mb-4 uppercase tracking-widest">Trust & Quality</div>
+                        <h4 class="text-2xl md:text-6xl font-black leading-tight tracking-tighter mb-2">
+                            <span class="text-yellow-400 gold-glow">10年</span>無事故実績<br class="md:hidden">
+                            <span class="text-4xl md:text-8xl text-yellow-400 italic gold-glow">15万</span>件
+                        </h4>
+                        <p class="text-xs md:text-xl opacity-90 font-bold">多くの方に選ばれ続けている、確かな信頼の証です。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4 max-w-4xl mx-auto mb-16">
+                <div class="voice-card">
+                    <div class="flex flex-col md:flex-row items-center gap-2 md:gap-8">
+                        <div class="bg-slate-100 p-3 rounded-xl flex-shrink-0 w-full md:w-48 text-center md:text-left">
+                            <p class="text-slate-500 text-[10px] font-bold mb-1 italic">お客様の声：Aさん（40代）</p>
+                            <p class="text-slate-800 text-xs md:text-sm font-black leading-tight">「若い人ばかりだと浮きそうで怖い…」</p>
+                        </div>
+                        <div class="flex-grow text-center md:text-left">
+                            <p class="text-[#00966C] text-[10px] font-black mb-0.5 italic">Answer:</p>
+                            <p class="text-slate-800 text-base md:text-xl font-black tracking-tighter leading-tight">
+                                <span class="text-[#00966C]">20代〜50代まで幅広い</span>層の方にご来院いただいております
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="voice-card border-emerald-400">
+                    <div class="flex flex-col md:flex-row items-center gap-2 md:gap-8">
+                        <div class="bg-slate-100 p-3 rounded-xl flex-shrink-0 w-full md:w-48 text-center md:text-left">
+                            <p class="text-slate-500 text-[10px] font-bold mb-1 italic">お客様の声：Bさん（20代）</p>
+                            <p class="text-slate-800 text-xs md:text-sm font-black leading-tight">「筋トレやランニングが継続できない〟」</p>
+                        </div>
+                        <div class="flex-grow text-center md:text-left">
+                            <p class="text-[#00966C] text-[10px] font-black mb-0.5 italic">Answer:</p>
+                            <p class="text-slate-800 text-base md:text-xl font-black tracking-tighter leading-tight">
+                                スルリムは<span class="text-[#00966C]">「きつい」食事制限、「無理な」運動、何もしなくていい</span>です！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="voice-card border-emerald-300">
+                    <div class="flex flex-col md:flex-row items-center gap-2 md:gap-8">
+                        <div class="bg-slate-100 p-3 rounded-xl flex-shrink-0 w-full md:w-48 text-center md:text-left">
+                            <p class="text-slate-500 text-[10px] font-bold mb-1 italic">お客様の声：Cさん（30代）</p>
+                            <p class="text-slate-800 text-xs md:text-sm font-black leading-tight">「仕事が忙しくて行けるのか心配」</p>
+                        </div>
+                        <div class="flex-grow text-center md:text-left">
+                            <p class="text-[#00966C] text-[10px] font-black mb-0.5 italic">Answer:</p>
+                            <p class="text-slate-800 text-base md:text-xl font-black tracking-tighter leading-tight">
+                                <span class="text-[#00966C]">20時まで営業！</span>約15分の短時間で外出ついでにも！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 実際のお客様からの口コミセクション -->
+    <section class="py-10 md:py-16 bg-white border-t border-slate-100 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <!-- 修正箇所：実際のお客様からの口コミ に変更 -->
+            <div class="bg-[#00966C] text-white px-5 py-0.5 rounded-full text-xs font-black inline-block mb-4 shadow-sm">実際のお客様からの口コミ</div>
+            <div class="space-y-6">
+                <div class="voice-card bg-emerald-50/30 border-dashed border-[#00966C]/40 p-6 md:p-8">
+                    <span class="review-quote-mark top-0 left-2">“</span>
+                    <div class="relative z-10">
+                        <div class="mb-4">
+                            <p class="text-slate-500 text-xs md:text-sm font-bold mb-1">31歳 女性</p>
+                            <h4 class="text-lg md:text-2xl font-black text-slate-900 leading-tight tracking-tighter">
+                                「私の代わりに、<span class="text-[#00966C]">医療が頑張ってくれました</span>」
+                            </h4>
+                        </div>
+                        <div class="space-y-3 text-slate-700 text-sm md:text-base font-bold leading-relaxed">
+                            <p>ジムは3日で挫折、サプリは飲み忘れる。そんな私が行き着いたのがスルリムでした。</p>
+                            <p>自分で何かをする必要が一切なくて、ただ横になって注射してもらうだけ. 勝手に痩せていって笑っちゃいました。</p>
+                            <p>無理に我慢しなくていいから、<span class="text-rose-600">リバウンドのストレスも0を追求できます</span>。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="voice-card bg-emerald-50/20 border-dashed border-[#00966C]/30 p-6 md:p-8">
+                    <span class="review-quote-mark top-0 left-2">“</span>
+                    <div class="relative z-10">
+                        <div class="mb-4">
+                            <p class="text-slate-500 text-xs md:text-sm font-bold mb-1">40歳 女性</p>
+                            <h4 class="text-lg md:text-2xl font-black text-slate-900 leading-tight tracking-tighter">
+                                悪いけど、私は<span class="text-[#00966C]">「寝てるだけ」で痩せました。</span>
+                            </h4>
+                        </div>
+                        <div class="space-y-3 text-slate-700 text-sm md:text-base font-bold leading-relaxed">
+                            <p>必死に走っている人たちを横目に、私はただ注射して寝ていただけ。正直、ずるしてるみたいで申し訳ないです笑笑。でも、40歳になってまで「我慢」なんてしたくないじゃないですか。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LINE登録セクション -->
+    <section class="py-12 md:py-20 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="impact-price-box rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 shadow-[0_40px_100px_-20px_rgba(225,29,72,0.2)] relative overflow-hidden">
+                <div class="max-w-4xl mx-auto relative z-10">
+                    <h2 class="text-2xl md:text-5xl font-black text-slate-900 leading-tight mb-8 tracking-tighter">
+                        「100時間の努力」を<br class="md:hidden">
+                        <span class="text-border-green">「約15分」で。</span>
+                    </h2>
+                    <div class="mb-10">
+                        <div class="flex flex-col items-center">
+                            <p class="text-lg md:text-2xl font-black text-rose-600 mb-2">＼ 圧倒的安さ ／</p>
+                            <div class="flex items-center justify-center gap-1 md:gap-4 flex-wrap leading-none">
+                                <span class="text-xl md:text-4xl font-black text-slate-800 self-center">一部位</span>
+                                <span class="impact-number">9,800</span>
+                                <div class="flex items-col items-start gap-1">
+                                    <span class="text-3xl md:text-6xl font-black text-rose-600">円<span class="text-sm md:text-2xl">（税込）</span></span>
+                                </div>
+                            </div>
+                            <p class="mt-4 bg-yellow-400 text-black px-6 py-2 rounded-lg font-black text-sm md:text-xl animate-pulse">
+                                この価格で医療ダイエットは破格！？
+                            </p>
+                        </div>
+                    </div>
+                    <div class="inline-block relative w-full sm:w-auto">
+                        <div class="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#00966C] text-white text-[10px] md:text-xs font-black px-4 py-1 rounded-full animate-bounce shadow-lg whitespace-nowrap">
+                            劇的な変化を今すぐチェック！
+                        </div>
+                        <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center bg-rose-600 text-white text-lg md:text-3xl font-black px-6 py-5 md:px-16 md:py-10 rounded-full shadow-[0_20px_40px_-10px_rgba(225,29,72,0.4)] hover:scale-105 active:scale-95 transition-all group border-b-8 border-rose-800">
+                            <span class="flex items-center">
+                                LINEで症例を公開中
+                                <svg class="w-6 h-6 md:w-8 md:h-8 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 全国34院展開中セクション -->
+    <section class="py-16 md:py-24 bg-white border-t border-slate-100 shadow-inner">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-5xl font-black text-slate-900 tracking-tighter leading-tight">
+                    全国<span class="text-[#00966C]">34院</span>展開中
+                </h3>
+                <p class="mt-4 text-slate-500 font-bold">お近くのクリニックをチェック</p>
+            </div>
+            <div class="clinic-accordion bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                <!-- 北海道・東北 -->
+                <details>
+                    <summary>
+                        <span>北海道・東北（4院）</span>
+                        <svg class="w-5 h-5 arrow-icon text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <div class="px-6 pb-6 bg-slate-50">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                            <div class="p-3 bg-white rounded-lg border border-slate-100 text-sm">
+                                <p class="text-slate-400 font-bold text-[10px] mb-1">北海道</p>
+                                <p class="font-black">札幌院</p>
+                            </div>
+                            <div class="p-3 bg-white rounded-lg border border-slate-100 text-sm">
+                                <p class="text-slate-400 font-bold text-[10px] mb-1">東北</p>
+                                <p class="font-black">青森院 / 仙台院 / 福島院</p>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+                <!-- 関東・東京 -->
+                <details>
+                    <summary>
+                        <span>関東・東京（14院）</span>
+                        <svg class="w-5 h-5 arrow-icon text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <div class="px-6 pb-6 bg-slate-50">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                            <div class="p-3 bg-white rounded-lg border border-slate-100 text-sm">
+                                <p class="text-slate-400 font-bold text-[10px] mb-1">東京23区</p>
+                                <p class="font-black">新橋院 / 池袋院 / 渋谷院<br>表参道院 / 錦糸町院 / 吉祥寺院</p>
+                            </div>
+                            <div class="p-3 bg-white rounded-lg border border-slate-100 text-sm">
+                                <p class="text-slate-400 font-bold text-[10px] mb-1">関東</p>
+                                <p class="font-black">横浜駅前院 / 川崎院 / 大宮院<br>高崎院 / 千葉院 / 柏院 / 松戸院 / 宇都宮院</p>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+                <!-- 中部・関西 -->
+                <details>
+                    <summary>
+                        <span>中部・関西（8院）</span>
+                        <svg class="w-5 h-5 arrow-icon text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <div class="px-6 pb-6 bg-slate-50">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                            <div class="p-3 bg-white rounded-lg border border-slate-100 text-sm">
+                                <p class="text-slate-400 font-bold text-[10px] mb-1">中部</p>
+                                <p class="font-black">静岡院 / 名古屋院 / 金沢院 / 新潟院</p>
+                            </div>
+                            <div class="p-3 bg-white rounded-lg border border-slate-100 text-sm">
+                                <p class="text-slate-400 font-bold text-[10px] mb-1">関西</p>
+                                <p class="font-black">心斎橋院 / 梅田院 / 京都院 / 三宮院</p>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+                <!-- 中国・四国・九州 -->
+                <details>
+                    <summary>
+                        <span>中国・四国・九州（8院）</span>
+                        <svg class="w-5 h-5 arrow-icon text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <div class="px-6 pb-6 bg-slate-50">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                            <div class="p-3 bg-white rounded-lg border border-slate-100 text-sm">
+                                <p class="text-slate-400 font-bold text-[10px] mb-1">中国・四国</p>
+                                <p class="font-black">広島院 / 岡山院 / 高松院 / 松山院</p>
+                            </div>
+                            <div class="p-3 bg-white rounded-lg border border-slate-100 text-sm">
+                                <p class="text-slate-400 font-bold text-[10px] mb-1">九州・沖縄</p>
+                                <p class="font-black">天神南院 / 熊本院 / 鹿児島院 / 那覇院</p>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- あなたはどの部位から試しますか？ -->
+    <section class="py-16 md:py-24 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-5xl font-black text-slate-900 tracking-tighter leading-tight">
+                    あなたはどの<span class="text-[#00966C]">部位</span>から試しますか？
+                </h3>
+            </div>
+            <div class="bg-white rounded-[3rem] p-4 md:p-12 border border-slate-100 shadow-sm relative overflow-hidden">
+                <div class="body-map-container">
+                    <div class="map-view">
+                        <p class="text-center text-[10px] md:text-xs font-black text-slate-400 mb-6 uppercase tracking-widest italic border-b border-slate-200 pb-2">Front View</p>
+                        <div class="relative">
+                            <svg viewBox="0 0 100 220" class="silhouette">
+                                <path d="M50 8 c3.5 0 6.5 3 6.5 7.5 s-2.5 8.5-6.5 8.5 s-6.5-4-6.5-8.5 s3-7.5 6.5-7.5 M43.5 25 q-8 0-10.5 12 l-4 35 q-1.5 15 2 25 q3 10 5 35 v65 q0 8 4 8 h2 q4 0 4-8 v-65 q0-30 2-35 q2-10 2-25 l-4-35 q-2.5-12-10.5-12 z" />
+                                <circle cx="50" cy="38" r="4" class="highlight-area" />
+                                <circle cx="33" cy="65" r="5" class="highlight-area" />
+                                <circle cx="67" cy="65" r="5" class="highlight-area" />
+                                <rect x="35" y="80" width="30" height="15" rx="2" class="highlight-area" />
+                                <rect x="32" y="105" width="36" height="12" rx="2" class="highlight-area" />
+                                <rect x="35" y="125" width="30" height="15" rx="2" class="highlight-area" />
+                                <rect x="38" y="150" width="10" height="40" rx="2" class="highlight-area" />
+                                <rect x="52" y="150" width="10" height="40" rx="2" class="highlight-area" />
+                                <rect x="28" y="150" width="8" height="40" rx="2" class="highlight-area" />
+                                <rect x="64" y="150" width="8" height="40" rx="2" class="highlight-area" />
+                                <rect x="35" y="195" width="10" height="8" rx="2" class="highlight-area" />
+                                <rect x="55" y="195" width="10" height="8" rx="2" class="highlight-area" />
+                            </svg>
+                            <div class="part-label top-[12%] left-[-15%] md:left-[-35%]">アゴ下</div>
+                            <div class="part-label top-[25%] left-[-10%] md:left-[-30%]">ワキ前</div>
+                            <div class="part-label top-[35%] left-[-15%] md:left-[-35%]">上腹部</div>
+                            <div class="part-label top-[45%] left-[-10%] md:left-[-30%]">側腹部</div>
+                            <div class="part-label top-[55%] left-[-15%] md:left-[-35%]">下腹部</div>
+                            <div class="part-label top-[68%] left-[-10%] md:left-[-30%]">太もも内側</div>
+                            <div class="part-label top-[78%] left-[-15%] md:left-[-35%]">太もも外側</div>
+                            <div class="part-label top-[88%] left-[-10%] md:left-[-30%]">ひざ上</div>
+                        </div>
+                    </div>
+                    <div class="map-view">
+                        <p class="text-center text-[10px] md:text-xs font-black text-slate-400 mb-6 uppercase tracking-widest italic border-b border-slate-200 pb-2">Back View</p>
+                        <div class="relative">
+                            <svg viewBox="0 0 100 220" class="silhouette">
+                                <path d="M50 8 c3.5 0 6.5 3 6.5 7.5 s-2.5 8.5-6.5 8.5 s-6.5-4-6.5-8.5 s3-7.5 6.5-7.5 M43.5 25 q-8 0-10.5 12 l-4 35 q-1.5 15 2 25 q3 10 5 35 v65 q0 8 4 8 h2 q4 0 4-8 v-65 q0-30 2-35 q2-10 2-25 l-4-35 q-2.5-12-10.5-12 z" />
+                                <rect x="35" y="30" width="30" height="20" rx="2" class="highlight-area" />
+                                <circle cx="33" cy="65" r="5" class="highlight-area" />
+                                <circle cx="67" cy="65" r="5" class="highlight-area" />
+                                <rect x="25" y="60" width="8" height="40" rx="2" class="highlight-area" />
+                                <rect x="67" y="60" width="8" height="40" rx="2" class="highlight-area" />
+                                <rect x="35" y="60" width="30" height="25" rx="2" class="highlight-area" />
+                                <rect x="32" y="95" width="36" height="15" rx="2" class="highlight-area" />
+                                <rect x="35" y="130" width="30" height="10" rx="2" class="highlight-area" />
+                                <rect x="32" y="150" width="16" height="40" rx="2" class="highlight-area" />
+                                <rect x="52" y="150" width="16" height="40" rx="2" class="highlight-area" />
+                                <rect x="40" y="195" width="6" height="20" rx="2" class="highlight-area" />
+                                <rect x="54" y="195" width="6" height="20" rx="2" class="highlight-area" />
+                            </svg>
+                            <div class="part-label top-[8%] right-[-15%] md:right-[-35%]">背中上部</div>
+                            <div class="part-label top-[18%] right-[-10%] md:right-[-30%]">ワキ後面</div>
+                            <div class="part-label top-[28%] right-[-15%] md:right-[-35%]">二の腕</div>
+                            <div class="part-label top-[38%] right-[-10%] md:right-[-30%] leading-tight text-center">背中<br>(肩甲骨下)</div>
+                            <div class="part-label top-[52%] right-[-15%] md:right-[-35%]">腰回り</div>
+                            <div class="part-label top-[64%] right-[-10%] md:right-[-30%]">お尻の下</div>
+                            <div class="part-label top-[78%] right-[-15%] md:right-[-35%]">太もも裏</div>
+                            <div class="part-label top-[90%] right-[-10%] md:right-[-30%]">ふくらはぎ</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 text-center px-4">
+                    <p class="text-[#00966C] font-black text-[10px] md:text-xl border-2 border-[#00966C] inline-block px-4 py-3 rounded-xl bg-emerald-50">
+                        上記以外の部位もご相談可能です。<br class="md:hidden">まずは無料カウンセリングでお悩みをお聞かせください。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- キャッチコピーセクション -->
+    <section class="py-16 md:py-24 bg-white border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-6 md:px-8 text-center">
+            <h4 class="text-2xl md:text-5xl font-black text-[#00966C] mb-8 tracking-tighter leading-tight">
+                努力で痩せる時代は終わりました。
+            </h4>
+            <div class="text-slate-700 text-lg md:text-3xl font-black leading-relaxed">
+                <p>「憎き贅肉」を一発で無くし、<br class="md:hidden">その劇的感動に震えてください。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LAST CHANCE PROMPT -->
+    <section class="py-12 bg-slate-50 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <p class="text-xl md:text-4xl font-black text-slate-900 leading-tight tracking-tighter mb-8 italic">
+                もしかしたら今、この瞬間が<br class="md:hidden">
+                最後のチャンスかもしれません
+            </p>
+            <div class="flex justify-center mb-4">
+                <svg class="w-12 h-12 text-[#00966C] animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA SECTION -->
+    <section id="final-cta" class="py-12 md:py-20 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="impact-price-box rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 shadow-[0_40px_100px_-20px_rgba(225,29,72,0.2)] relative overflow-hidden">
+                <div class="max-w-4xl mx-auto relative z-10">
+                    <h2 class="text-2xl md:text-5xl font-black text-slate-900 leading-tight mb-8 tracking-tighter">
+                        「100時間の努力」を<br class="md:hidden">
+                        <span class="text-border-green">「約15分」で。</span>
+                    </h2>
+                    <div class="mb-10">
+                        <div class="flex flex-col items-center">
+                            <p class="text-lg md:text-2xl font-black text-rose-600 mb-2">＼ 圧倒的安さ ／</p>
+                            <div class="flex items-center justify-center gap-1 md:gap-4 flex-wrap leading-none">
+                                <span class="text-xl md:text-4xl font-black text-slate-800 self-center">一部位</span>
+                                <span class="impact-number">9,800</span>
+                                <div class="flex flex-col items-start gap-1">
+                                    <span class="text-3xl md:text-6xl font-black text-rose-600">円<span class="text-sm md:text-2xl">（税込）</span></span>
+                                </div>
+                            </div>
+                            <p class="mt-4 bg-yellow-400 text-black px-6 py-2 rounded-lg font-black text-sm md:text-xl animate-pulse">
+                                この価格で医療ダイエットは破格！？
+                            </p>
+                        </div>
+                    </div>
+                    <div class="inline-block relative w-full sm:w-auto">
+                        <div class="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#00966C] text-white text-[10px] md:text-xs font-black px-4 py-1 rounded-full animate-bounce shadow-lg whitespace-nowrap">
+                            劇的な変化を今すぐチェック！
+                        </div>
+                        <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center bg-rose-600 text-white text-lg md:text-3xl font-black px-6 py-5 md:px-16 md:py-10 rounded-full shadow-[0_20px_40px_-10px_rgba(225,29,72,0.4)] hover:scale-105 active:scale-95 transition-all group border-b-8 border-rose-800">
+                            <span class="flex items-center">
+                                LINEで症例を公開中
+                                <svg class="w-6 h-6 md:w-8 md:h-8 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✨ AI Diagnosis Modal -->
+    <div id="aiModal" class="modal-overlay" onclick="closeAiModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-black text-[#00966C]">✨ 無料症例案内 & 診断</h3>
+                <button onclick="document.getElementById('aiModal').style.display='none'" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            </div>
+            <div id="aiChatWindow" class="mb-4 h-[300px] overflow-y-auto border border-gray-100 p-4 rounded-xl space-y-4">
+                <div class="ai-message">こんにちは！スルリムのAIコンシェルジュです。あなたのお悩みや目標に合わせて、最適な症例やプランをご案内します。まずは現在気になっている部位や目標を教えてください！</div>
+            </div>
+            <div id="aiInputArea" class="flex flex-col gap-3">
+                <textarea id="aiUserInput" class="w-full border-2 border-gray-200 rounded-xl p-3 text-sm focus:border-[#00966C] outline-none" placeholder="例：お腹周りをスッキリさせたい。仕事で忙しいけど大丈夫？"></textarea>
+                <button id="aiSendBtn" onclick="runDiagnosis()" class="bg-[#00966C] text-white font-black py-3 rounded-full shadow-md active:scale-95 transition-all flex items-center justify-center">✨ 相談を始める</button>
+            </div>
+            <div id="lineCtaAfterAi" class="hidden mt-6 text-center">
+                <p class="text-xs font-bold text-gray-500 mb-3">詳しい症例写真はLINEで限定公開中！</p>
+                <a href="#" class="inline-block bg-rose-600 text-white text-sm font-black px-8 py-3 rounded-full shadow-lg border-b-4 border-rose-800">LINEで症例を見る</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-slate-900 py-10 md:py-20 px-4 text-center text-slate-500 text-[10px] md:text-xs">
+        <div class="mb-4 font-black tracking-[0.5em] text-slate-400 text-lg uppercase">SURURIMU</div>
+        <p class="mb-2 font-bold text-slate-400">超次世代痩身ダイエット代行サービス「スルリム」</p>
+        <p class="opacity-60">&copy; 2026 SURURIMU Inc. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const apiKey = "";
+        function openAiModal() { document.getElementById('aiModal').style.display = 'flex'; }
+        function closeAiModal(e) { if(e.target === document.getElementById('aiModal')) document.getElementById('aiModal').style.display = 'none'; }
+        async function runDiagnosis() {
+            const input = document.getElementById('aiUserInput').value;
+            if (!input.trim()) return;
+            const chatWindow = document.getElementById('aiChatWindow');
+            const sendBtn = document.getElementById('aiSendBtn');
+            const inputArea = document.getElementById('aiUserInput');
+            const userMsgDiv = document.createElement('div');
+            userMsgDiv.className = 'user-message';
+            userMsgDiv.innerText = input;
+            chatWindow.appendChild(userMsgDiv);
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = '<span class="loader"></span> 確認中...';
+            inputArea.value = '';
+            const systemPrompt = `あなたは医療ダイエット『スルリム』のAIコンシェルジュです。ユーザーの悩みに対して以下のトーンで回答してください：1. 悩みに共感し、スルリムなら「寝ているだけ」で解決できることを伝える。2. ユーザーが気にする部位に対する期待効果を具体的に説明。3. 最後に「詳しい症例写真はLINEで公開中です」と促す。回答は200文字程度で、誠実かつ前向きなトーンでお願いします。`;
+            try {
+                const response = await callGemini(input, systemPrompt);
+                const aiMsgDiv = document.createElement('div');
+                aiMsgDiv.className = 'ai-message';
+                aiMsgDiv.innerText = response;
+                chatWindow.appendChild(aiMsgDiv);
+                document.getElementById('lineCtaAfterAi').classList.remove('hidden');
+            } catch (error) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'ai-message text-red-500';
+                errorDiv.innerText = 'エラーが発生しました。再度お試しください。';
+                chatWindow.appendChild(errorDiv);
+            } finally {
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = '✨ さらに質問する';
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+        }
+        async function callGemini(userQuery, systemPrompt) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = { contents: [{ parts: [{ text: userQuery }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
+            let delay = 1000;
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    if (!response.ok) throw new Error('API Error');
+                    const result = await response.json();
+                    return result.candidates?.[0]?.content?.parts?.[0]?.text || "回答が得られませんでした。";
+                } catch (error) {
+                    if (i === 4) throw error;
+                    await new Promise(res => setTimeout(res, delay));
+                    delay *= 2;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
